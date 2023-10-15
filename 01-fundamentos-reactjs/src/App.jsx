@@ -1,4 +1,4 @@
-import { Post } from './Post.jsx'
+import { Post } from './components/Post.jsx'
 import { Header } from './components/Header.jsx'
 import { SideBar } from './components/Sidebar.jsx'
 
