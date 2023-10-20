@@ -30,17 +30,16 @@ export function App() {
       <div className={styles.wrapper}>
         <SideBar/>
         <main>
-          {posts.map(post => {
-            return (
-              <Post
-                key={post.id}
-                author={post.author}
-                contents={post.contents}
-                publishedAt={post.publishedAt}
-              />)
-          })}          
-        </main>        
+          {posts.map(post => (
+            <Post
+              key={post.id}
+              author={post.author}
+              contents={post.contents}
+              publishedAt={post.publishedAt}
+            />
+          ))}
+        </main>
       </div>
     </div>
-  )
+  );
 }

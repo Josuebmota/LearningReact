@@ -25,7 +25,12 @@ export function Post({author, contents, publishedAt}){
   }
 
   function handleNewCommentChange(){
+    event.target.setCustomValidity('')
     setNewCommentText(event.target.value)
+  }
+
+  function handleNewCommentInvalid(){
+    event.target.setCustomValidity('O comentário não pode estar vazio')
   }
 
   function deleteComment(commentToDelete){
@@ -33,6 +38,8 @@ export function Post({author, contents, publishedAt}){
       return comment !== commentToDelete})
     setComment(commentsWithoutDeleted)
   }
+
+  const isnewCommentEmpty = newCommentText.length === 0
 
   return (
     <article className={styles.post}>
@@ -70,10 +77,16 @@ export function Post({author, contents, publishedAt}){
           placeholder='Deixe seu comentário...'
           value={newCommentText}
           onChange={handleNewCommentChange}
+          onInvalid={handleNewCommentInvalid}
+          required
         />
 
         <footer>
-          <button type='submit'>Comentar</button>
+          <button 
+            type='submit' 
+            disabled = {isnewCommentEmpty}>
+              Publicar
+          </button>
         </footer>
       </form>
 
