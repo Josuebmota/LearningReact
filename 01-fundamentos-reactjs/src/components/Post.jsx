@@ -5,7 +5,7 @@ import { Comment } from './Comment.jsx'
 import styles from './Post.module.css'
 import { useState } from 'react'
 
-export function Post({author, content, publishedAt}){
+export function Post({author, contents, publishedAt}){
   const [comments, setComment] = useState([
     'Nice post',
     'Nice post 2'
@@ -28,6 +28,12 @@ export function Post({author, content, publishedAt}){
     setNewCommentText(event.target.value)
   }
 
+  function deleteComment(commentToDelete){
+    const commentsWithoutDeleted = comments.filter(comment => {
+      return comment !== commentToDelete})
+    setComment(commentsWithoutDeleted)
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -48,11 +54,11 @@ export function Post({author, content, publishedAt}){
       </header>
 
       <div className={styles.content}>
-        {content.map((content, index) => { 
-          if(content.type === 'paragraph'){
-            return <p key={index}>{content.text}</p>
-          }else if(content.type === 'link'){
-            return <p><a href="#">{content.text}</a></p>
+        {contents.map((line, index) => { 
+          if(line.type === 'paragraph'){
+            return <p key={line.content}>{line.text}</p>
+          }else if(line.type === 'link'){
+            return <p key={line.content}><a href="#">{line.text}</a></p>
          }})}
       </div>
 
@@ -72,7 +78,12 @@ export function Post({author, content, publishedAt}){
       </form>
 
       <div className={styles.commentList}>
-        {comments.map(comment => <Comment content={comment}/>)}
+        {comments.map(comment => 
+          <Comment 
+            key={comment} 
+            content={comment}
+            onDeleteComment ={deleteComment}/>
+        )}
       </div>
     </article>
   )

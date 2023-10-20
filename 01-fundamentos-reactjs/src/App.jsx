@@ -13,7 +13,7 @@ const posts = [
       name: 'Josué',
       role: 'Engenheiro de Software'
     },
-    content: [
+    contents: [
       {type: 'paragraph', text: 'Fala glr'},
       {type: 'paragraph', text: 'Fala glr'},
       {type: 'paragraph', text: 'Fala glr'},
@@ -35,7 +35,7 @@ export function App() {
               <Post
                 key={post.id}
                 author={post.author}
-                content={post.content}
+                contents={post.contents}
                 publishedAt={post.publishedAt}
               />)
           })}          
