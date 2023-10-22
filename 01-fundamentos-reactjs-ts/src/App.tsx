@@ -1,11 +1,12 @@
 import { Post } from './components/Post.jsx'
 import { Header } from './components/Header.jsx'
 import { SideBar } from './components/Sidebar.jsx'
+import { PostType } from './components/Post.jsx'
 
 import styles from './App.module.css'
 import './global.css'
 
-const posts = [
+const posts: PostType[] = [
   {
     id:1,
     author: {
@@ -33,12 +34,7 @@ export function App() {
           {posts.map(post => (
             <Post
               key={post.id}
-              author={post.author}
-              contents={post.contents.map(content => ({
-                type: content.type === 'link' ? 'link' : 'paragraph',
-                text: content.text
-              }))}
-              publishedAt={post.publishedAt}
+              post={post}
             />
           ))}
         </main>
